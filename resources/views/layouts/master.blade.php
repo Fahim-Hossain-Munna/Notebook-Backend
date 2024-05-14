@@ -46,6 +46,8 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="{{ asset('backend_assets') }}/js/vendor/modernizr.min.js"></script>
+        <script src="https://cdn.tiny.cloud/1/d335izb1eou8whtad5ananhblqa46th5jvqz2nhcrq6m2vg2/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
     </head>
     <body>
 
@@ -286,6 +288,12 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('category') }}" class="{{ Route::currentRouteName() == 'category' ? 'active' : '' }}"><i class="fa-solid fa-icons sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Category</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('tag') }}" class="{{ Route::currentRouteName() == 'tag' ? 'active' : '' }}"><i class="fa-solid fa-user-tag sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tags</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('blog') }}" class="{{ Route::currentRouteName() == 'blog' ? 'active' : '' }}"><i class="fa-brands fa-blogger sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Blog</span></a>
                                 </li>
                                 <li>
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">eCommerce</span></a>

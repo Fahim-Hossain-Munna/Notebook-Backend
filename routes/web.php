@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\ApiAuthorController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +40,13 @@ Route::middleware('auth')->group(function () {
     // category part
     Route::get('/category',[CategoryController::class,'index'])->name('category');
     Route::post('/category',[CategoryController::class,'create'])->name('category.create');
+    // tag part
+    Route::get('/tag',[TagController::class,'index'])->name('tag');
+    Route::post('/tag',[TagController::class,'create'])->name('tag.create');
+
+    // blog part
+    Route::get('/blog',[BlogController::class,'index'])->name('blog');
+    Route::post('/blog/create',[BlogController::class,'create'])->name('blog.create');
 
 });
 
