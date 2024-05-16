@@ -30,3 +30,12 @@ Route::get('/tag/latest',[ApiTagController::class,'latest']);
 // get blogs
 Route::get('/blogs',[ApiBlogController::class,'show']);
 Route::get('/blogs/feature',[ApiBlogController::class,'feature']);
+Route::get('/blog/single/{id}',[ApiBlogController::class,'single']);
+
+// searchableblog
+Route::get('/search/blog',[ApiBlogController::class,'search']);
+
+// blog update views
+// Route::get('/search/blog',[ApiBlogController::class,'search']);
+
+
