@@ -43,6 +43,23 @@ class ApiBlogController extends Controller
             ],200);
         }
     }
+    public function popular(){
+        $blogs = Blog::with('oneuser','onecategory')->orderBy('views','desc')->latest()->get()->take(2);
+
+        if($blogs->count() < 0){
+            return response()->json([
+                'status' => 401,
+                'message' => 'something is problem',
+            ],401);
+        }else{
+            return response()->json([
+                'status' => 200,
+                'img_path_blog' => env('APP_URL').'/uploads/blog/',
+                'img_path_user' => env('APP_URL').'/uploads/profile_image/',
+                'data' => $blogs,
+            ],200);
+        }
+    }
 
     public function single($id){
 
