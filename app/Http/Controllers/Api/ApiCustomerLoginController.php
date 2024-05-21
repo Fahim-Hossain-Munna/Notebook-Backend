@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,18 +18,18 @@ class ApiCustomerLoginController extends Controller
         $validation = Validator::make($request->all(),[
             'firstname' => ['required'],
             'lastname' => ['required'],
-            'email' => ['required'],
+            'email' => ['required','email:filter'],
             'password' => ['required'],
         ]);
         if($validation->fails()){
             return response()->json([
                 'status' => 401,
                 'message' => 'validation fails',
-                'errors' => $validation->errors(),
+                'errors' => $validation->errors()->all(),
 
             ],401);
         }else{
-            $user = User::create([
+            $user = Customer::create([
                 'firstname' => $request->firstname,
                 'lastname' => $request->lastname,
                 'email' => $request->email,
@@ -65,7 +66,7 @@ class ApiCustomerLoginController extends Controller
                     'errors' => $validation->errors(),
                 ],401);
             }else{
-                if(!Auth::attempt($request->only(['email','password']))){
+                if(!Auth::guard('customer')->attempt($request->only(['email','password']))){
                 return response()->json([
                     'status' => 401,
                     'message' => 'creadential not match',
