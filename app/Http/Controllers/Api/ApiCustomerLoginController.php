@@ -63,16 +63,16 @@ class ApiCustomerLoginController extends Controller
                 return response()->json([
                     'status' => 401,
                     'message' => 'validation failed',
-                    'errors' => $validation->errors(),
+                    'errors' => $validation->errors()->all(),
                 ],401);
             }else{
-                if(!Auth::guard('customer')->attempt($request->only(['email','password']))){
+                if(!Auth::guard('customer')->attempt(['email'=>$request->email, 'password'=>$request->password])){
                 return response()->json([
                     'status' => 401,
                     'message' => 'creadential not match',
                 ],401);
                 }else{
-                    $user = User::where('email',$request->email)->first();
+                    $user = Customer::where('email',$request->email)->first();
                     $token = $user->createToken("API TOKEN")->plainTextToken;
                 return response()->json([
                     'status' => 200,
